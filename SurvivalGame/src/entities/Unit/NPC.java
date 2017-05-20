@@ -2,6 +2,9 @@ package src.entities.Unit;
 
 import java.awt.Graphics;
 
+import src.Handler;
+import src.gfx.Animation;
+
 public class NPC extends Unit
 {	
 	private Animation NPC;
@@ -10,9 +13,9 @@ public class NPC extends Unit
 	private static final int MAX_HEALTH = 100;
 	private static final float DEFAULT_SPEED = 5.0f;
 	
-	public NPC(float x, float y, int h)
+	public NPC(Handler han, float x, float y, int h)
 	{
-		super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, h, MAX_HEALTH, 10, DEFAULT_SPEED);
+		super(han, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, h, MAX_HEALTH, 10, DEFAULT_SPEED);
 		//NPC = new animation(params);
 	}
 
@@ -46,7 +49,7 @@ public class NPC extends Unit
 	@Override
 	public void render(Graphics g) 
 	{
-		g.drawImage(NPC.getCurrentFrame(), (int) (xPoint - handler.getGameCamera().getxOffset()), (int) (yPoint - handler.getGameCamera().getyOffset()), width, height, null);
+		g.drawImage(NPC.getCurrentFrame(), (int) (getXloc() - handler.getGameCamera().getxOffset()), (int) (getYloc() - handler.getGameCamera().getyOffset()), width, height, null);
 	}
 
 }

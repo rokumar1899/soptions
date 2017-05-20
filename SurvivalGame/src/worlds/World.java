@@ -1,7 +1,6 @@
 package src.worlds;
 
 import java.awt.Graphics;
-
 import src.Handler;
 import src.entities.*;
 import src.items.ItemManager;
@@ -21,7 +20,7 @@ public class World {
 	
 	public World(Handler handler, String path){
 		this.handler = handler;
-		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		entityManager = new EntityManager(handler, new Player(handler, 100, 100, 70, 100, 5));
 		itemManager = new ItemManager(handler);
 		// Temporary entity code!
 		entityManager.addEntity(new Tree(handler, 132, 250));
@@ -32,8 +31,8 @@ public class World {
 		
 		loadWorld(path);
 		
-		entityManager.getPlayer().setX(spawnX);
-		entityManager.getPlayer().setY(spawnY);
+		entityManager.getPlayer().setXloc(spawnX);
+		entityManager.getPlayer().setYloc(spawnY);
 	}
 	
 	public void tick(){

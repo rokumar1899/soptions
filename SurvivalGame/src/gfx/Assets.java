@@ -1,6 +1,5 @@
 package src.gfx;
 
-
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 
@@ -13,6 +12,7 @@ public class Assets {
 	public static BufferedImage dirt, grass, stone, tree, rock;
 	public static BufferedImage wood;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
+	//public static BufferedImage[] player_pickup, player_attack, player_talk;
 	public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
 	public static BufferedImage[] btn_start;
 	public static BufferedImage inventoryScreen;

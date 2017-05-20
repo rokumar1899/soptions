@@ -1,9 +1,10 @@
 package src.entities.Unit;
 
 import java.awt.Graphics;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import src.Handler;
+import src.gfx.*;
 
 import src.items.Item;
 
@@ -12,32 +13,23 @@ public class Player extends Unit
 {
 	private Animation animDown, animUp, animRight, animLeft;
 	private int mentalHealth, thirst, hunger;
-	private int currency;
 	private ArrayList<Item> inventory;
 	public static final int WIDTH = 64;
 	public static final int HEIGHT = 70;
 	
-    public Player(float x, float y, int health, int maxHealth, float speed)
+    public Player(Handler han, float x, float y, int health, int maxHealth, float speed)
     {
-        super(x, y, WIDTH, HEIGHT, health, maxHealth, 1, speed);
-    
-        //These represent the part of the body
-        
-        bounds.x = 22;
-        bounds.y = 44;
-        bounds.width = 19;
-        bounds.height = 19;
-        
+        super(han, x, y, WIDTH, HEIGHT, health, maxHealth, 1, speed);
+          
         //Animations
-        animDown = new Animation(500, Assets.player_down, 300);
-        animUp = new Animation(500, Assets.player_up, 300);
-        animLeft = new Animation(500, Assets.player_left, 300);
-        animRight = new Animation(500, Assets.player_right, 300);
+        animDown = new Animation(500, Assets.player_down);
+        animUp = new Animation(500, Assets.player_up);
+        animLeft = new Animation(500, Assets.player_left);
+        animRight = new Animation(500, Assets.player_right);
         
-       currency = 0;
-       mentalHealth=100;
-       thirst=100; 
-       hunger=100;
+       setMentalHealth(100);
+       setThirst(100); 
+       setHunger(100);
     }
 
     public void tick()
@@ -62,29 +54,24 @@ public class Player extends Unit
     	xMove = 0;
     	yMove = 0;
     	
-    	if(handler.getKeyManager().getW())
+    	if(handler.getKeyManager().getUP())
     	{
     		yMove = -speed;
     	}
-    	if(handler.getKeyManager().getS())
+    	if(handler.getKeyManager().getDOWN())
     	{
     		yMove = speed;
     	}
-    	if(handler.getKeyManager().getA())
+    	if(handler.getKeyManager().getLEFT())
     	{
     		xMove = -speed;
     	}
-    	if(handler.getKeyManager().getD())
+    	if(handler.getKeyManager().getRIGHT())
     	{
     		xMove = speed;
     	}
-    	if(handler.getMouseManager().isUpgradeRof() && money >= 100)
-    	{
-    		addRof(-50);
-    		addMoney(-100);
-    	}
     }
-    
+      /*
     public Entity shoot()
     {
     	Entity b;
@@ -112,7 +99,25 @@ public class Player extends Unit
     	{
     		return null;
     	}
-    }
+    	
+    	
+    	 * public void attack()
+    	 * if(handler.getKeyManager().getX() && entity next to you && weapon!=bow)
+    	 * {
+    	 * 		that entity.health() -= this.weaponAttack;
+    	 * }
+    	 * 
+    	 * public void interact
+    	 * {
+    	 * 		if(item next to you )
+    	 * 			inventory.add(item);
+    	 * 		else
+    	 * 			
+    	 * }
+    	 * }
+    	 * 	
+    	 */
+    
     
     private BufferedImage getCurrentAnimationFrame()
     {
@@ -134,31 +139,38 @@ public class Player extends Unit
     	}
     }
     
-    public long getRof()
-    {
-    	return rof;
-    }
-    
-    public void addRof(long r)
-    {
-    	if(rof > 50)
-    	rof += r;
-    }
-    
-    public void setRof(long r)
-    {
-    	rof = r;
-    }
-    
-    public void addMoney(int m)
-    {
-    	money += m;
-    }
-    
-    public int getMoney()
-    {
-    	return money;
-    }
+    //getters and setters
+	public int getHunger() {
+		return hunger;
+	}
+
+	public void setHunger(int hunger) {
+		this.hunger = hunger;
+	}
+
+	public int getMentalHealth() {
+		return mentalHealth;
+	}
+
+	public void setMentalHealth(int mentalHealth) {
+		this.mentalHealth = mentalHealth;
+	}
+
+	public int getThirst() {
+		return thirst;
+	}
+
+	public void setThirst(int thirst) {
+		this.thirst = thirst;
+	}
+
+	public ArrayList<Item> getInventory() {
+		return inventory;
+	}
+	
+	public void setInventory(ArrayList<Item> inventory) {
+		this.inventory = inventory;
+	}
 }
 	 
 	

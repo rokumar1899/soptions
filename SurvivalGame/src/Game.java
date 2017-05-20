@@ -2,7 +2,6 @@ package src;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-
 import src.display.*;
 import src.gfx.*;
 import src.input.*;
@@ -117,10 +116,6 @@ public class Game implements Runnable {
 	
 	public KeyManager getKeyManager(){
 		return keyManager;
-	}
-	
-	public MouseManager getMouseManager(){
-		return mouseManager;
 	}
 	
 	public GameCamera getGameCamera(){

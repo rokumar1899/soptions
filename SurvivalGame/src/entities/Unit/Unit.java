@@ -1,5 +1,7 @@
 package src.entities.Unit;
 
+import src.Handler;
+import src.tiles.*;
 import src.entities.Entity;
 import java.awt.*;
 
@@ -9,9 +11,9 @@ public abstract class Unit extends Entity
     protected float xMove, yMove;// how much it moves per turn
     protected int attackPower; // damage dealt
 	
-    public Unit(float x, float y, int w, int he, int h, int mh, int l, float s )
+    public Unit(Handler han, float x, float y, int w, int he, int h, int mh, int l, float s )
     {
-        super(x, y, w, he, h, mh, l, true, true);
+        super(han, x, y, w, he, h, mh, l, true, true);
         speed = s;
         xMove = 0;
         yMove = 0;
@@ -34,28 +36,28 @@ public abstract class Unit extends Entity
     {
     	if(xMove > 0)//Moving right
     	{
-    		int tx = (int)(xPoint + xMove + bounds.x + bounds.width) / Tile.TILEWIDTH;
-    		if(!collisionWithTile(tx, (int)(yPoint + bounds.y) / Tile.TILEHEIGHT) && 
-    			!collisionWithTile(tx, (int)(yPoint + bounds.y + bounds.height)/ Tile.TILEHEIGHT))
+    		int tx = (int)(getXloc() + xMove + boundary.getX() + width) / Tile.TILEWIDTH;
+    		if(!collisionWithTile(tx, (int)(yloc + boundary.getY()) / Tile.TILEHEIGHT) && 
+    			!collisionWithTile(tx, (int)(yloc + boundary.getY() + height)/ Tile.TILEHEIGHT))
     		{
-    			xPoint += xMove;
+    			xloc += xMove;
     		}
     		else
     		{
-    			xPoint = tx * Tile.TILEWIDTH - bounds.x - bounds.width - 1;
+    			xloc = (float)(tx * Tile.TILEWIDTH - boundary.getX() - width - 1);
     		}
     	}
     	else if(xMove < 0)//Moving Left
     	{
-    		int tx = (int)(xPoint + xMove + bounds.x) / Tile.TILEWIDTH;
-    		if(!collisionWithTile(tx, (int)(yPoint + bounds.y) / Tile.TILEHEIGHT) && 
-    			!collisionWithTile(tx, (int)(yPoint + bounds.y + bounds.height)/ Tile.TILEHEIGHT))
+    		int tx = (int)(xloc + xMove + boundary.getX()) / Tile.TILEWIDTH;
+    		if(!collisionWithTile(tx, (int)(yloc + boundary.getY()) / Tile.TILEHEIGHT) && 
+    			!collisionWithTile(tx, (int)(yloc + boundary.getY() + height)/ Tile.TILEHEIGHT))
     		{
-    			xPoint += xMove;
+    			xloc += xMove;
     		}
     		else
     		{
-    			xPoint = tx * Tile.TILEWIDTH + Tile.TILEWIDTH - bounds.x;
+    			xloc = (float)(tx * Tile.TILEWIDTH + Tile.TILEWIDTH - boundary.getX());
     		}
     	}
     }
@@ -64,30 +66,30 @@ public abstract class Unit extends Entity
     {
     	if(yMove < 0)//going up
     	{
-    		int ty = (int)(yPoint + yMove + bounds.y) / Tile.TILEHEIGHT;
+    		int ty = (int)(yloc + yMove + boundary.getY()) / Tile.TILEHEIGHT;
     		
-    		if(!collisionWithTile((int) (xPoint + bounds.x) / Tile.TILEWIDTH, ty) &&
-    				!collisionWithTile((int) (xPoint + bounds.x + bounds.width) / Tile.TILEWIDTH, ty))
+    		if(!collisionWithTile((int) (xloc + boundary.getX()) / Tile.TILEWIDTH, ty) &&
+    				!collisionWithTile((int) (xloc + boundary.getX() + width) / Tile.TILEWIDTH, ty))
     		{
-    			yPoint += yMove;
+    			yloc += yMove;
     		}
     		else
     		{
-    			yPoint = ty * Tile.TILEHEIGHT + Tile.TILEHEIGHT - bounds.y;
+    			yloc = (float)(ty * Tile.TILEHEIGHT + Tile.TILEHEIGHT - boundary.getY());
     		}
     	}
     	else if(yMove > 0)// going down
     	{
-    		int ty = (int)(yPoint + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
+    		int ty = (int)(yloc + yMove + boundary.getY() + height) / Tile.TILEHEIGHT;
     		
-    		if(!collisionWithTile((int) (xPoint + bounds.x) / Tile.TILEWIDTH, ty) &&
-    				!collisionWithTile((int) (xPoint + bounds.x + bounds.width) / Tile.TILEWIDTH, ty))
+    		if(!collisionWithTile((int) (xloc + boundary.getX()) / Tile.TILEWIDTH, ty) &&
+    				!collisionWithTile((int) (xloc + boundary.getX() + width) / Tile.TILEWIDTH, ty))
     		{
-    			yPoint += yMove;
+    			yloc += yMove;
     		}
     		else
     		{
-    			yPoint = ty * Tile.TILEHEIGHT - bounds.y - bounds.height - 1;
+    			yloc = (float)(ty * Tile.TILEHEIGHT - boundary.getY() - height - 1);
     		}
     	}
     } 
@@ -99,9 +101,9 @@ public abstract class Unit extends Entity
     		{
     			continue;//goes to next variable
     		}
-    		if(e.isProjectile() && e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)))
+    		if(e.isWeapon() && e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)))
     		{
-    			health--;
+    			health-= e.damage();
     			if(health<=0)
     				e.setAlive(false);
     			return false;
@@ -117,6 +119,21 @@ public abstract class Unit extends Entity
     {
     	return handler.getWorld().getTile(x, y).isSolid();
     }
+    
+    /*
+    public Tool shoot()
+    {
+    	Tool b = new Arrow// param(handler, xloc, yloc, xspeed, yspeed, width, height, damage)(handler, getX() + (width/2), getY() + (height/2), "N");
+    	return b;
+    }
+    	
+    		
+    public void attack()
+    	if(handler.getKeyManager().getX() && entity next to you && weapon!=bow)
+    	{
+    	  		that entity.health() -= this.weaponAttack;
+    	}
+    */
     
     // render and tick
     public abstract void tick();

@@ -1,7 +1,9 @@
 package src.states;
 
 import java.awt.Graphics;
+import src.worlds.*;
 import java.awt.*;
+import src.Handler;
 
 public class GameState extends State
 {    
@@ -46,10 +48,10 @@ public class GameState extends State
     public void render(Graphics g)
     {
     	world.render(g);
-    	g.setColor(Color.ORANGE);
-    	g.drawString("Score: "+score, 30, 30);
-    	g.setColor(Color.RED);
-    	g.drawString("Number of Germs : "+handler.getWorld().getEntityManager().getNumCreature()+"/30", 30, 70);
+    	//g.setColor(Color.ORANGE);
+    	//g.drawString("Score: "+score, 30, 30);
+    	//g.setColor(Color.RED);
+    	//g.drawString("Number of Germs : "+handler.getWorld().getEntityManager().getNumCreature()+"/30", 30, 70);
     	g.setColor(Color.GREEN);
     	g.drawString("Money: "+handler.getWorld().getEntityManager().getPlayer().getMoney(), 30, 90);
 		g.drawImage(Assets.getRof(), 0, handler.getHeight()-32, null);

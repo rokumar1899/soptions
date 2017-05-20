@@ -2,6 +2,7 @@ package src.states;
 
 import java.awt.Graphics;
 import java.awt.*;
+import src.Handler;
 
 public class MenuState extends State
 {
@@ -10,12 +11,12 @@ public class MenuState extends State
     public MenuState(Handler h)
     {
         super(h);
-        instruction = "Press \"T\" to Start";
+        instruction = "Press \"ENTER\" to Start";
     }
     
     public void tick()
     {
-    	if(handler.getKeyManager().getT())
+    	if(handler.getKeyManager().getENTER())
     	{
     		State.setState(handler.getGame().gameState);
     	}
@@ -30,6 +31,6 @@ public class MenuState extends State
     {
     	g.drawString(instruction, handler.getWidth() /2, handler.getHeight() /2 );
         g.setColor(Color.GREEN);
-        g.fillOval(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), 10, 10);
+        //g.fillOval(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), 10, 10);
     }
 }
