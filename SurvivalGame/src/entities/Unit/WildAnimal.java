@@ -1,6 +1,8 @@
 package src.entities.Unit;
 
 import java.awt.Graphics;
+import src.gfx.*;
+import src.Handler;
 import java.awt.*;
 
 public class WildAnimal extends Unit
@@ -9,21 +11,16 @@ public class WildAnimal extends Unit
 	private static final int DEFAULT_WIDTH = 64;
 	private static final int DEFAULT_HEIGHT = 55;
 	 
-    public WildAnimal(float x, float y, int h, int mh, int l, int s)
+    public WildAnimal(Handler han, float x, float y, int h, int mh, int l, int s, int d)
     {
-        super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, h, mh, l, s );
-    
-        //These represent the part of the body
+        super(han, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, h, mh, l, s, d);
         
-        bounds.x = 0;
-        bounds.y = 0;
-        bounds.width = width;
-        bounds.height = height;
-        setPoint(30);
+        
         //Animations
-        animal = new Animation(500, Assets.germ_move, 500);
+        //animal = new Animation(500, Assets.animal_move );
     }
 
+    // render and tick methods
     public void tick()
     {
     	animal.tick();
@@ -37,17 +34,20 @@ public class WildAnimal extends Unit
     		setAlive(false);
     	}
     }
+    public void render(Graphics g)
+    {
+        g.drawImage(animal.getCurrentFrame(), (int) (getXloc() - handler.getGameCamera().getxOffset()), (int) (getYloc() - handler.getGameCamera().getyOffset()), width, height, null);
+    }
     
+    //other methods
     private void getInput()
     {
     	xMove = (int)(Math.random()*10-5);
     	yMove = (int)(Math.random()*10-5);
     }
 
-    public void render(Graphics g)
-    {
-        g.drawImage(animal.getCurrentFrame(), (int) (xPoint - handler.getGameCamera().getxOffset()), (int) (yPoint - handler.getGameCamera().getyOffset()), width, height, null);
-    }
+    
+    //getters and setters
    
 }
 

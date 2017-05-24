@@ -122,6 +122,10 @@ public class Game implements Runnable {
 		return gameCamera;
 	}
 	
+	public State getGameState(){
+		return gameState;
+	}
+	
 	public int getWidth(){
 		return width;
 	}

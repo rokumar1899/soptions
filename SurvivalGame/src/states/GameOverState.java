@@ -8,7 +8,7 @@ public class GameOverState extends State
 {
 	private String result;
 	
-	public GameOverState(Handler h, int Score)
+	public GameOverState(Handler h)
 	{
 		super(h);
 		//result = "You died in ___ days";
@@ -18,7 +18,7 @@ public class GameOverState extends State
 	{
 		if(handler.getKeyManager().getP())
 		{
-			//State.setState(handler.getGame().pauseState);
+			State.setState(handler.getGame().pauseState);
 		}
 	}
 	

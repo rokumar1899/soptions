@@ -8,14 +8,12 @@ import src.Handler;
 public class GameState extends State
 {    
     private World world;
-    private int score;
     
     public GameState(Handler h)
     {
         super(h);
         world = new World(handler, "res/worlds/world.txt");
         handler.setWorld(world);
-        score = 0;
     }
     
     public void tick()
@@ -35,15 +33,6 @@ public class GameState extends State
     	}
     }
     
-    public void addScore(int s)
-    {
-    	score += s;
-    }
-    
-    public int getScore()
-    {
-    	return score;
-    }
     
     public void render(Graphics g)
     {

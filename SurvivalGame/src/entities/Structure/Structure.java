@@ -3,8 +3,6 @@ package src.entities.Structure;
 import src.entities.Entity;
 import src.Handler;
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Structure extends Entity 
 {
@@ -25,16 +23,15 @@ public class Structure extends Entity
 	
 	 public boolean checkEntityCollision(float xOffset, float yOffset)
 	  {
-	  		for(Entity e: handler.getWorld().getEntityUpdater().getEntities()))
+	  		for(Entity e: handler.getWorld().getEntityManager().getEntities())
 	  		{
 	  			if(e.equals(this))// skip itself
 	  			{
 	  				continue;
 	  			}
-	  			if(!e.isProjectile() && e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))))
+	  			if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)))
 	  			{
-	  				if(!team.equals(handler.getPlayerInterface().getColor()) && !e.isBuilding()))
-	  					return true;
+	  				return true;
 	  			}	
 	  		}
 	  		return false;

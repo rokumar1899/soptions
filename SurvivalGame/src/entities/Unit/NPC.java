@@ -4,10 +4,11 @@ import java.awt.Graphics;
 
 import src.Handler;
 import src.gfx.Animation;
+import src.gfx.Assets;
 
 public class NPC extends Unit
 {	
-	private Animation NPC;
+	private Animation NPCdown, NPCup, NPCleft, NPCright;
 	private static final int DEFAULT_WIDTH = 60;
 	private static final int DEFAULT_HEIGHT = 60;
 	private static final int MAX_HEALTH = 100;
@@ -15,8 +16,11 @@ public class NPC extends Unit
 	
 	public NPC(Handler han, float x, float y, int h)
 	{
-		super(han, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, h, MAX_HEALTH, 10, DEFAULT_SPEED);
-		//NPC = new animation(params);
+		super(han, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, h, MAX_HEALTH, 10, DEFAULT_SPEED, 5);
+		NPCdown = new Animation(500, Assets.NPC_down);
+		NPCup = new Animation(500, Assets.NPC_up);
+		NPCleft = new Animation(500, Assets.NPC_left);
+		NPCright = new Animation(500, Assets.NPC_right);
 	}
 
 	@Override

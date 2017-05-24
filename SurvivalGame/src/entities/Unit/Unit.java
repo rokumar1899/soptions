@@ -11,16 +11,16 @@ public abstract class Unit extends Entity
     protected float xMove, yMove;// how much it moves per turn
     protected int attackPower; // damage dealt
 	
-    public Unit(Handler han, float x, float y, int w, int he, int h, int mh, int l, float s )
+    public Unit(Handler han, float x, float y, int w, int he, int h, int mh, int l, float s, int a )
     {
         super(han, x, y, w, he, h, mh, l, true, true);
         speed = s;
         xMove = 0;
         yMove = 0;
-        attackPower = 5;
+        attackPower = a;
     }
-    
-    //methods
+
+	//methods
     public void move()
     {
     	if(!checkEntityCollisions(xMove, 0f))
@@ -99,14 +99,7 @@ public abstract class Unit extends Entity
     	{
     		if(e.equals(this))
     		{
-    			continue;//goes to next variable
-    		}
-    		if(e.isWeapon() && e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)))
-    		{
-    			health-= e.damage();
-    			if(health<=0)
-    				e.setAlive(false);
-    			return false;
+    			continue; //goes to next variable 
     		}
     		if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)))
     		{
@@ -171,7 +164,13 @@ public abstract class Unit extends Entity
 	}
 	public void setSpeed(float speed) {
 		this.speed = speed;
-	}    
+	}  
+    public int getAttackPower() {
+		return attackPower;
+	}
+	public void setAttackPower(int attackPower) {
+		this.attackPower = attackPower;
+	}
 }
 	 
 	

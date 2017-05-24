@@ -12,7 +12,7 @@ public class SafeSpace extends Structure
 	protected static boolean inSafeSpace = false;
 	private static final int mentalHealAmt = 20;
 	private static final int physicalHealAmt = 10;
-	private static final int hungerIncAmt = -10;
+	private static final int hungerIncAmt = -5;
 	private static final int thirstIncAmt = -5;
 	
 	public SafeSpace(Handler han, float x, float y, int width, int l)
@@ -35,7 +35,7 @@ public class SafeSpace extends Structure
 		x.setHunger(c+=hungerIncAmt);
 		x.setThirst(d+=thirstIncAmt);
 		for(Entity z : handler.getWorld().getEntityManager().getEntities())
-			z.setCanAttack(false);
+			z.setCanAttack(false); // make sure no one can attack when player is in the safe space
 	}
 
 	@Override

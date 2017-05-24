@@ -61,12 +61,14 @@ public class Enemy extends Unit
 		}
 		else// if the player is within enemy range, enemy moves towards him
 		{
+			// move in x direction towards player
 			if(handler.getWorld().getEntityManager().getPlayer().getXloc() > this.getXloc())
 				super.setxMove(10);
 			else if(handler.getWorld().getEntityManager().getPlayer().getXloc() == this.getXloc())
 				super.setxMove(0);
 			else
 				super.setxMove(-10);
+			//move in y direction towards player
 			if(handler.getWorld().getEntityManager().getPlayer().getYloc() > this.getYloc())
 				super.setyMove(10);
 			else if(handler.getWorld().getEntityManager().getPlayer().getYloc() == this.getYloc())

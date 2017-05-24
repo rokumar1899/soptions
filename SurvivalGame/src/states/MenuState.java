@@ -16,7 +16,7 @@ public class MenuState extends State
     
     public void tick()
     {
-    	if(handler.getKeyManager().getENTER())
+    	if(handler.getKeyManager().getP())
     	{
     		State.setState(handler.getGame().gameState);
     	}

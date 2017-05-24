@@ -38,7 +38,7 @@ public class KeyManager implements KeyListener {
 		interact = keys[KeyEvent.VK_Z];
 		attack = keys[KeyEvent.VK_X];
 		
-		pause = keys[KeyEvent.VK_P];
+		pause = keys[KeyEvent.VK_P]; // also opens up menu
 		select = keys[KeyEvent.VK_ENTER];
 	}
 	

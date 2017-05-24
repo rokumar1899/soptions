@@ -14,12 +14,12 @@ public class Player extends Unit
 	private Animation animDown, animUp, animRight, animLeft;
 	private int mentalHealth, thirst, hunger;
 	private ArrayList<Item> inventory;
-	public static final int WIDTH = 64;
-	public static final int HEIGHT = 70;
+	public static final int DEFAULT_WIDTH = 64;
+	public static final int DEFAULT_HEIGHT = 70;
 	
     public Player(Handler han, float x, float y, int health, int maxHealth, float speed)
     {
-        super(han, x, y, WIDTH, HEIGHT, health, maxHealth, 1, speed);
+        super(han, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, health, maxHealth, 1, speed, weapon.getDamage());
           
         //Animations
         animDown = new Animation(500, Assets.player_down);
@@ -46,7 +46,10 @@ public class Player extends Unit
     
      public void render(Graphics g)
     {
-        g.drawImage(getCurrentAnimationFrame(), (int) (getXloc() - handler.getGameCamera().getxOffset()), (int) (getYloc() - handler.getGameCamera().getyOffset()), getWidth(), getHeight(), null);
+    	if(this.isAlive())
+    		g.drawImage(getCurrentAnimationFrame(), (int) (getXloc() - handler.getGameCamera().getxOffset()), (int) (getYloc() - handler.getGameCamera().getyOffset()), getWidth(), getHeight(), null);
+    	else
+    		handler.getGame().getGameState().gameOver();;
     }
     
       private void getInput()
@@ -118,7 +121,8 @@ public class Player extends Unit
     	 * 	
     	 */
     
-    
+      
+      
     private BufferedImage getCurrentAnimationFrame()
     {
     	if(xMove < 0)//moving left
