@@ -2,6 +2,8 @@ package sOption.entities.unit;
 
 import sOption.Connector;
 import sOption.entities.*;
+import sOption.worlds.Region;
+
 import java.awt.*;
 
 public abstract class Unit extends Entity
@@ -33,53 +35,27 @@ public abstract class Unit extends Entity
 	
 	public void moveX()
 	{
-		if(xMove > 0)//Moving Right
+		xloc += xMove;
+		if(xloc < 0)
 		{
-			if(xloc < 10000 - width)
-			{
-				xloc += xMove;
-			}
-			else
-			{
-				xloc = 10000 - width;
-			}
+			xloc = 0;
 		}
-		else if(xMove < 0)//Moving Left
+		else if(xloc > Region.getWidth() - width)
 		{
-			if(xloc > width)
-			{
-				xloc += xMove;
-			}
-			else
-			{
-				xloc = width;
-			}
+			xloc = Region.getWidth() - width;
 		}
 	}
 	
 	public void moveY()
 	{
-		if(yMove > 0) //Moving Down
+		yloc += yMove;
+		if(yloc < 0)
 		{
-			if(yloc < 8000 - height)
-			{
-				yloc += yMove;
-			}
-			else
-			{
-				yloc = 8000 - height;
-			}
+			yloc = 0;
 		}
-		else if(yMove < 0) //Moving up
+		else if(yloc > Region.getHeight() - height)
 		{
-			if(yloc < height)
-			{
-				yloc += yMove;
-			}
-			else
-			{
-				yloc = height;
-			}
+			yloc = Region.getHeight() - height;
 		}
 	}
 

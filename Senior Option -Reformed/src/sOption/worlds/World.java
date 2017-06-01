@@ -20,7 +20,7 @@ public class World
 	{
 		this.connector = connector;
 		connector.setWorld(this);
-		entityManager = new EntityManager(connector, new Player(connector, 5000, 8700, 100));
+		entityManager = new EntityManager(connector, new Player(connector, 2074, 1590, 100));
 		itemManager = new ItemManager(connector);
 		
 		region = new Beach(connector);
@@ -38,7 +38,7 @@ public class World
 	public void render(Graphics g)
 	{
 		Region.getRegion().render(g);
-		itemManager.render(g);
+		//itemManager.render(g);
 		entityManager.render(g);
 	}
 	
@@ -60,6 +60,11 @@ public class World
 	public Connector getConnector()
 	{
 		return connector;
+	}
+	
+	public Region getRegion()
+	{
+		return region;
 	}
 	
 	public void setConnector(Connector connector)

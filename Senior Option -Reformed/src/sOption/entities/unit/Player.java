@@ -18,7 +18,7 @@ public class Player extends Unit
 	
 	public Player(Connector c, float x, float y, int health)
 	{
-		super(c, x, y, WIDTH, HEIGHT, 100, 1, 3);
+		super(c, x, y, WIDTH, HEIGHT, 100, 1, 7);
 		this.alive = true;
 		animDown = new Animation(250, Assets.player_down);
 		animUp = new Animation(250, Assets.player_up);
@@ -41,6 +41,8 @@ public class Player extends Unit
 	public void render(Graphics g)
 	{
 		g.drawImage(getCurrentAnimationFrame(), (int) (getXloc() - connector.getGameCamera().getxOffset()), (int) (getYloc() - connector.getGameCamera().getyOffset()), getWidth(), getHeight(), null);
+		System.out.println("xloc = "+xloc);
+		System.out.println("yloc = "+yloc);
 	}
 	
 	private void getInput()

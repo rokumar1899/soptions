@@ -4,10 +4,8 @@ import java.awt.image.BufferedImage;
 
 public class Assets 
 {
-	private static final int width = 32, height = 32;
-	
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
-	public static BufferedImage beach, river, plain, forest, mountain, village;
+	public static SpriteSheet beach, river, plain, forest, mountain, village;
 	
 	public static void init()
 	{
@@ -38,7 +36,6 @@ public class Assets
 		player_right[3] = player.crop(768, 1536, 256, 512);
 		
 		
-		beach = (new SpriteSheet(ImageLoader.loadImage("/Regions/Beach.png"))).crop(0, 0, 10000, 8000);
-	
+		beach = new SpriteSheet(ImageLoader.loadImage("/Regions/Beach.png"));
 	}
 }

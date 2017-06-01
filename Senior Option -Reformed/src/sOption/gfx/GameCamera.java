@@ -2,6 +2,7 @@ package sOption.gfx;
 
 import sOption.Connector;
 import sOption.entities.Entity;
+import sOption.worlds.Region;
 
 public class GameCamera 
 {
@@ -21,18 +22,18 @@ public class GameCamera
 		{
 			xOffset = 0;
 		}
-		else if(xOffset > 10000 - connector.getWidth())
+		else if(xOffset > Region.getWidth()- connector.getWidth())
 		{
-			xOffset = 10000- connector.getWidth();
+			xOffset = Region.getWidth() - connector.getWidth();
 		}
 		
 		if(yOffset < 0)
 		{
 			yOffset = 0;
 		}
-		else if(yOffset > 8000 - connector.getHeight())
+		else if(yOffset > Region.getHeight() - connector.getHeight())
 		{
-			yOffset = 8000 - connector.getHeight();
+			yOffset = Region.getHeight() - connector.getHeight();
 		}
 	}
 	
