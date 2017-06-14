@@ -16,10 +16,10 @@ public class Goat extends Unit
 	public Goat(Connector c, float x, float y)
 	{
 		super(c, x, y, 50, 50, 70, 2, 5);
-		animDown = new Animation(250, Assets.player_down);
-		animUp = new Animation(250, Assets.player_up);
-		animLeft = new Animation(250, Assets.player_left);
-		animRight = new Animation(250, Assets.player_right);
+		animDown = new Animation(250, Assets.goat_down);
+		animUp = new Animation(250, Assets.goat_up);
+		animLeft = new Animation(250, Assets.goat_left);
+		animRight = new Animation(250, Assets.goat_right);
 	}
 	
 	@Override
